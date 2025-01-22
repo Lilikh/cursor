@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horse Information</title>
+    <link rel="stylesheet" href="styling.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+       <img src="/download-removebg-preview.png" alt="logo">
+        <div>
+         <button id="login-button">Log In</button>
+         <button id="theme-toggle">
+            <span id="theme-icon">🌙</span>
+         </button>
+        </div>
+    </header>
+   <div class="heroBg">
+    <h1>Horse Information</h1>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for a horse...">
+       
+    </div>
+   </div>
+
+    <table id="starters-table">
+        <thead>
+            <tr>
+                <th onclick="sortTable('name')">Horse Name</th>
+                <th onclick="sortTable('age', 'number')">Age</th>
+                <th>Sex</th>
+                <th>Shoes</th>
+                <th>Sulky</th>
+                <th>Trainer</th>
+                <th onclick="sortTable('number', 'number')">Number</th>
+                <th>Distance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table content will be populated by JavaScript -->
+        </tbody>
+    </table>
+
+    <div id="horse-details">
+        <h2>Horse Details</h2>
+        <p>Name: <span id="horse-name"></span></p>
+        <p>Age: <span id="horse-age"></span></p>
+        <p>Sex: <span id="horse-sex"></span></p>
+        <p>Shoes: <span id="horse-shoes"></span></p>
+        <p>Sulky: <span id="horse-sulky"></span></p>
+        <p>Trainer: <span id="horse-trainer"></span></p>
+    </div>
+
+    <div id="driver-details"></div>
+
+    <script src="script.js"></script>
+    <script src="/Fuse.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js"></script>
+</body>
+</html>
