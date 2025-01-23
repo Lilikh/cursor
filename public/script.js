@@ -27,6 +27,7 @@ async function getStarters(date) {
 
 async function main() {
     const starters = await getStarters("2025-01-25");
+    console.log("Fetched starters:", starters); // Debugging line
     localStorage.setItem("starters", JSON.stringify(starters));
     populateStartersTable(starters); // Populate the table initially
 }
@@ -35,11 +36,11 @@ main();
 // Fetching details for a specific horse.
 function getStarterDetails(horseName) {
     const starters = JSON.parse(localStorage.getItem("starters")) || [];
-    console.log("Starters from localStorage:", starters);
+    console.log("Starters from localStorage:", starters); // Debugging line
     const starter = starters.find(starter => starter.horse.name.toLowerCase() === horseName.toLowerCase());
 
     if (starter) {
-        console.log(starter);
+        console.log("Found starter:", starter); // Debugging line
         updateStarterInfo(starter);
     } else {
         console.error("No matching starter found for horse name:", horseName);
