@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-       <img src="/download-removebg-preview.png" alt="logo">
+       <img src="/public/img/download-removebg-preview.png" alt="logo">
         <div>
          <button id="login-button">Log In</button>
          <button id="theme-toggle">
@@ -17,14 +17,21 @@
          </button>
         </div>
     </header>
-   <div class="heroBg">
-    <h1>Horse Information</h1>
+  
     <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search for a horse...">
+        <h1>Horse Information</h1>
        
-    </div>
-   </div>
+        <input type="text" id="search-input" placeholder="Search for a horse or driver...">
+        <input type="text" id="user-question" placeholder="Ask a question...">
+        <button id="ask-button">Submit</button>
 
+        <div id="answer-box"></div>
+        <div id="answer-card">
+            <h2>Answer:</h2>
+            <textarea id="answer" readonly></textarea>
+        </div>
+    </div>
+   
     <table id="starters-table">
         <thead>
             <tr>
@@ -43,20 +50,22 @@
         </tbody>
     </table>
 
-    <div id="horse-details">
-        <h2>Horse Details</h2>
-        <p>Name: <span id="horse-name"></span></p>
-        <p>Age: <span id="horse-age"></span></p>
-        <p>Sex: <span id="horse-sex"></span></p>
-        <p>Shoes: <span id="horse-shoes"></span></p>
-        <p>Sulky: <span id="horse-sulky"></span></p>
-        <p>Trainer: <span id="horse-trainer"></span></p>
+    <div id="horse-details-popup" class="hidden">
+        <div class="popup-content">
+            <span class="close-button" onclick="closePopup()">&times;</span>
+            <h2>Horse Details</h2>
+            <p>Name: <span id="popup-horse-name"></span></p>
+            <p>Age: <span id="popup-horse-age"></span></p>
+            <p>Sex: <span id="popup-horse-sex"></span></p>
+            <p>Shoes: <span id="popup-horse-shoes"></span></p>
+            <p>Sulky: <span id="popup-horse-sulky"></span></p>
+            <p>Trainer: <span id="popup-horse-trainer"></span></p>
+            <p>Number: <span id="popup-horse-number"></span></p>
+            <p>Distance: <span id="popup-horse-distance"></span></p>
+        </div>
     </div>
 
-    <div id="driver-details"></div>
-
-    <script src="script.js"></script>
-    <script src="/Fuse.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js"></script>
+    <script src="/public/script.js"></script>
+    <script src="test-api.js"></script>
 </body>
 </html>
