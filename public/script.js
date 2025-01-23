@@ -1,27 +1,46 @@
 // Fetching JSON data for the calendar of a specific day.
 async function getCalendarData(date) {
-    const response = await fetch(`https://www.atg.se/services/racinginfo/v1/api/calendar/day/${date}`);
-    const data = await response.json();
-    return data;
+    try {
+        const response = await fetch(`https://www.atg.se/services/racinginfo/v1/api/calendar/day/${date}`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch calendar data: ${response.statusText}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching calendar data:", error);
+        return null;
+    }
 }
 
 // Fetching JSON data for a specific race.
 async function getSectionInfo(raceId) {
-    const response = await fetch(`https://www.atg.se/services/racinginfo/v1/api/races/${raceId}`);
-    const data = await response.json();
-    return data;
+    try {
+        const response = await fetch(`https://www.atg.se/services/racinginfo/v1/api/races/${raceId}`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch section info: ${response.statusText}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching section info:", error);
+        return null;
+    }
 }
 
 // Fetching all starters for a V75 race on some specific day.
 async function getStarters(date) {
     const calendarData = await getCalendarData(date);
+    if (!calendarData) {
+        return [];
+    }
     const races = calendarData.games.V75[0].races;
     const proms = [];
     for (const race of races) {
         proms.push(getSectionInfo(race));
     }
     const sectionInfos = await Promise.all(proms);
-    const starters = sectionInfos.flatMap(sectionInfo => sectionInfo.starts);
+    const starters = sectionInfos.flatMap(sectionInfo => sectionInfo ? sectionInfo.starts : []);
     return starters;
 }
 
