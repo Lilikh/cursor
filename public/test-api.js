@@ -27,12 +27,12 @@ async function testApi(question) {
             },
             {
                 name: "Ziva",
-                age: 3,
+                age: 6,
                 sex: "Mare",
                 shoes: "Shoes Off",
                 sulky: "Lightweight",
-                trainer: "Li",
-                number: 3,
+                trainer: "Hans Crebas",
+                number: 2,
                 distance: "1800m"
             },
             {
@@ -108,3 +108,4 @@ document.getElementById('ask-button').addEventListener('click', () => {
     testApi(question);
 });
  */
+
