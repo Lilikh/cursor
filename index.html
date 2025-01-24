@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Filter and OpenAI Interaction</title>
+</head>
+<body>
+    <input type="text" id="search-input" placeholder="Search by name...">
+    <button id="search-button">Search</button>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Shoes</th>
+                <th>Sulky</th>
+                <th>Trainer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+    <div id="openai-response"></div>
+    <div id="popup" style="display: none;">
+        <span onclick="closePopup()">Close</span>
+        <!-- Popup content here -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

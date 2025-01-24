@@ -88,7 +88,7 @@ tbody tr:nth-child(even) {
 
 #starters-table {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 50px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -478,14 +478,21 @@ header img {
     background-color: #f0f0f0;
 }
 
-#answer-card {
+#answer-box {
     border: #0d7e0f solid 2px;
     border-radius: 10px;
     width: 50%;
+    height: auto;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     margin: 20px auto;
+ 
+}
+textarea#answer {
+    border: #0d7e0f solid 2px;
+    border-radius: 5px;
+   
 }
 
 #answer-card h2 {

@@ -131,7 +131,7 @@ function addRowClickListeners() {
     });
 }
 
-// Function to show horse details in a popup.
+// Function to show horse details in a popup
 function showHorseDetailsPopup(starter) {
     const popupHorseName = document.getElementById('popup-horse-name');
     const popupHorseAge = document.getElementById('popup-horse-age');
@@ -152,9 +152,53 @@ function showHorseDetailsPopup(starter) {
     popupHorseDistance.textContent = `${starter.distance}m`;
 
     document.getElementById('horse-details-popup').classList.remove('hidden');
+    document.getElementById('horse-details-popup').style.display = 'block'; // Ensure modal is displayed
 }
 
-// Close the popup when the close button is clicked.
+// Close the popup when the close button is clicked
 document.querySelector('.close-button').addEventListener('click', () => {
     document.getElementById('horse-details-popup').classList.add('hidden');
+    document.getElementById('horse-details-popup').style.display = 'none'; // Ensure modal is hidden
+});
+const themeToggle = document.getElementById('theme-toggle');
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const themeIcon = document.getElementById('theme-icon');
+        if (document.body.classList.contains('dark-mode')) {
+            themeIcon.textContent = '☀️'; // Sun icon for light mode
+        } else {
+            themeIcon.textContent = '🌙'; // Moon icon for dark mode
+        }
+    });
+}
+
+document.getElementById('ask-button').addEventListener('click', async () => {
+    const question = document.getElementById('user-question').value;
+    const tableData = JSON.parse(localStorage.getItem("starters")) || [];
+
+    console.log("Question:", question); // Debugging line
+    console.log("Table Data:", tableData); // Debugging line
+
+    try {
+        const response = await fetch('http://localhost:3000/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question, tableData })
+        });
+
+        const data = await response.json();
+        console.log("Response from server:", data); // Debugging line
+        
+        // Update the text here
+        if (data.answer.includes("There are not enough drivers available this week.")) {
+            data.answer = "Sorry, I can't provide information about the drivers participating in this week's races. However, I can help you with anything related to the horses or odds if you need it!";
+        }
+        
+        document.getElementById('answer-box').innerText = data.answer;
+    } catch (error) {
+        console.error('Error fetching from server:', error);
+    }
 });

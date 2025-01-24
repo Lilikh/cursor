@@ -150,7 +150,9 @@ app.post('/api/chat', async (req, res) => {
     Question: ${question}
     Answer:
     `;
-
+    console.log("Question:", question); 
+    console.log(tableData);
+    
     try {
         const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
@@ -159,23 +161,29 @@ app.post('/api/chat', async (req, res) => {
                 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
             },
             body: JSON.stringify({
-                model: 'gpt-3.5-turbo',
+                model: 'gpt-4o',
                 messages: [
                     { role: "system", content: "You are a gambling expert called Leila. Your mission is to help people gamble on horses. Here is the data:" },
-                    { role: "system", content: JSON.stringify(tableData, null, 2) },
+                    { role: "system", content: JSON.stringify(tableData.slice(0,10), null, 2) },
                     { role: "user", content: question }
+                  
+               
+                    
                 ],
-                max_tokens: 150
+               
             })
         });
+     
 
         const openaiData = await openaiResponse.json();
+
         if (openaiData.choices && openaiData.choices.length > 0) {
             const answer = openaiData.choices[0].message.content.trim();
             res.json({ answer });
         } else {
             console.error('Invalid response from OpenAI API:', openaiData);
-            res.status(500).json({ error: 'Invalid response from OpenAI API' });
+            res.status(500).json({ data: openaiData, 
+                error: 'Invalid response from OpenAI API' });
         }
     } catch (error) {
         console.error('Error calling OpenAI API:', error);

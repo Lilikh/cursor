@@ -25,11 +25,8 @@
         <input type="text" id="user-question" placeholder="Ask a question...">
         <button id="ask-button">Submit</button>
 
-        <div id="answer-box"></div>
-        <div id="answer-card">
-            <h2>Answer:</h2>
-            <textarea id="answer" readonly></textarea>
-        </div>
+    
+      
     </div>
    
     <table id="starters-table">
@@ -49,7 +46,11 @@
             <!-- Table content will be populated by JavaScript -->
         </tbody>
     </table>
-<!-- 
+    <div id="answer-box">
+        <h2>Answer:</h2>
+        <textarea id="answer" readonly></textarea>
+    </div>
+
     <div id="horse-details-popup" class="hidden">
         <div class="popup-content">
             <span class="close-button" onclick="closePopup()">&times;</span>
@@ -64,7 +65,7 @@
             <p>Distance: <span id="popup-horse-distance"></span></p>
         </div>
     </div>
- -->
+
     <script src="/public/script.js"></script>
     <script src="test-api.js"></script>
 </body>
